@@ -1,0 +1,2 @@
+# DjangoOnlineShop
+Thesis, online store.
