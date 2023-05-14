@@ -1,0 +1,38 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    Авторизация
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container-fluid" style="margin-top: 5%">
+	
+	<h2 class="text-center">Добро пожаловать! Пожалуйста войдите в систему</h2>
+
+	<div class="col-md-6 offset-md-3">
+		<hr>
+		<form method="POST">
+			{% csrf_token %}
+		  <div class="form-group">
+		    
+		    <input type="text" class="form-control"placeholder="логин..." name="username">
+		    
+		  </div>
+		  <div class="form-group">
+		   
+		    <input type="password" class="form-control"  placeholder="пароль..." name="password">
+		  </div>
+            <div class="container-fluid" style="margin-top: 2%; text-align:right">
+	            <small>Новый пользователь? Создайте новый аккаунт. <a href="{% url 'register' %}">Регистрация</a></small>
+            </div>
+		    <button type="submit" class="btn btn-info">Авторизация</button>
+		</form>
+	</div>
+
+</div>
+
+
+
+{% endblock %}

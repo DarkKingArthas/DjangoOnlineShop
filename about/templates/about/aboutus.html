@@ -1,0 +1,50 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    О нас
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top: 2%">
+
+      <!-- Introduction Row -->
+      <h1>
+        <small style="color: teal ; margin-left: 1%">О Нас</small>
+      </h1>
+      <hr>
+      <div class="col-8">
+      <p align="justify">Book List - основан в 2023 году в городе Воронеж и базируется на моей флешке, это место, где люди могут покупать книги онлайн.</p>
+      <p align="justify">Будь то романтическая книжка или книга про знаменитого персонажа, у нас есть все, что вам нужно. Наш онлайн-магазин книг - это свежий шаг вперед
+          от нашего обычного кирпично-мортарного магазина, чтобы предоставить наш сервис еще большему количеству людей.
+          Мы предлагаем книги самых разных жанров и даже можем посоветовать вам чтение, основываясь на рейтингах. Для всех, кто обожает книжки и увлекается чтением, наш сайт - просто находка!
+          Ведь здесь вы сможете отыскать новые произведения, открывать для себя авторов, о которых раньше и не слыхивали. Купить книгу онлайн - это просто сказка! Жмите одну кнопочку, и та самая книга, о которой мечтали, уже у вас в кармане (или, ну, в сумке).
+          Не стесняйтесь погрузиться в нашу обширную коллекцию книг - у нас есть все для вас!</P>
+      </div>
+
+      <hr>
+      <!-- Team Members Row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="my-4">
+            <small style="color: teal; margin-left: 1%"> Наша команда</small>
+          </h1>
+
+        </div>
+        
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src=" {% static '' %}"alt="">
+          <h3>Преподаватели VIVT</h3>
+
+        </div>
+        <div class="col-lg-4 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="{% static '' %}" alt="">
+          <h3>Куликов А.И.</h3>
+        </div>
+        </div>
+      </div>
+    </div>
+
+        
+        
+
+{% endblock %}
