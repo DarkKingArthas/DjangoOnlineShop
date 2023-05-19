@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    {% if category %}{{ category.name }} {% else %} Book List - Онлайн магазин | Домашняя{% endif %}
+    {% if category %}{{ category.name }} {% else %} Book Haven - Онлайн магазин | Домашняя{% endif %}
 {% endblock %}
 
 
@@ -31,7 +31,7 @@
           <div class="carousel-item active">
             <img class="d-block w-100" src="{% static 'img/slide1.jpg' %}" alt="First slide">
           </div>
-          
+
           <div class="carousel-item">
             <img class="d-block w-100" src="{% static 'img/slide2.jpg' %}" alt="Second slide">
           </div>
@@ -76,7 +76,7 @@
         {% else %}
           <p class="card-text" style="color: gold">Закончилось</p>
         {% endif %}
-        <p><a href="{{ product.get_absolute_url }}" class="btn btn-dark btn-sm">Просмотр</a></p>
+        <p><a href="{{ product.get_absolute_url }}" class="btn-view">Подробнее</a></p>
           
       </div>
     </div>
