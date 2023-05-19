@@ -100,7 +100,7 @@ def recommend(request):
             product_list.append(product_dict)
         return render(request, 'shop/recommend.html', {'product_list': product_list})
     else:
-        message = "Вы оценили все возможные книги. Нет рекомендаций."
+        message = "Вы оценили все возможные книги. В данный момент нам больше нечего вам порекомендовать."
         return render(request, 'shop/recommend.html', {'message': message})
 
 
