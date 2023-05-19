@@ -135,7 +135,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'products/')
 
-CART_SESSION_ID= 'cart'
+CART_SESSION_ID = 'cart'
 
 REDIS_HOST = 'localhost' 
 REDIS_PORT = 6379 

@@ -144,13 +144,31 @@ def product_detail(request, id, slug):
     # rating
     if request.method == "POST":
         rate = request.POST['rating']
-        ratingObject = Myrating()
-        ratingObject.user = request.user
-        ratingObject.product = product
-        ratingObject.rating = rate
-        ratingObject.save()
-        messages.success(request, "Ваш отзыв добавлен ")
+
+        # Проверяем, существует ли уже оценка от этого пользователя для данной книги
+        existing_rating = Myrating.objects.filter(user=request.user, product=product).first()
+        if existing_rating:
+            messages.error(request, "Вы уже оценили эту книгу.")
+        else:
+            ratingObject = Myrating()
+            ratingObject.user = request.user
+            ratingObject.product = product
+            ratingObject.rating = rate
+            ratingObject.save()
+            messages.success(request, "Ваш отзыв добавлен ")
+
         return redirect('shop:product_list')
+
+    rating = Myrating.objects.filter(user=request.user, product=product).first()
+    context = {
+        'product': product,
+        'cart_product_form': cart_product_form,
+        'rated': rating is not None,
+        'rating': rating.rating if rating else 0,
+    }
+
+    return render(request, 'shop/detail.html', context)
+
 
     context = {
         'product': product,
