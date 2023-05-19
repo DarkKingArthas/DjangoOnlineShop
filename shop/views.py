@@ -1,11 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
 from django.http import Http404
 from django.db.models import Q
-from django.contrib.auth.models import User
-from django.urls import reverse
-from sklearn.preprocessing import LabelEncoder
 
 from .models import Category, Product, Myrating
 from django.contrib import messages
@@ -13,9 +8,6 @@ from cart.forms import CartAddProductForm
 from surprise import Dataset, Reader, SVD
 from surprise.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
-from django.db.models import Case, When
-from .recommendation import Myrecommend
-import numpy as np
 import pandas as pd
 
 

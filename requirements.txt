@@ -3,3 +3,6 @@ Django==4.2.1
 numpy==1.24.3
 scipy==1.10.1
 xhtml2pdf==0.2.11
+
+surprise~=0.1
+scikit-learn~=1.2.2
