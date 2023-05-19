@@ -107,6 +107,8 @@ celerybeat.pid
 .env
 .venv
 .idea
+.vscode
+!.vscode/launch.json
 env/
 venv/
 ENV/
