@@ -33,11 +33,56 @@
             font-size:1.25em;
             padding: 10px 0 0;
             }
+.my-dropdown-list {
+  list-style: none;
+  width: 230px;
+  padding: 0;
+}
+
+.my-dropdown-list li {
+  position: relative;
+}
+
+.my-dropdown-list li:not(:last-child) {
+  margin-bottom: 1px;
+}
+
+.my-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: normal;
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.my-dropdown-item::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.my-dropdown-item.selected::after,
+.my-dropdown-item.active::after {
+  height: 2px;
+}
+
 
 .star-rating .fa-star{color: gold;}
         
     </style>
-    
+
 
     
 </head>
@@ -135,11 +180,11 @@
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <ol class="list-unstyled">
             <li {% if not category %} class="active"{% endif %}>
-                <a class="dropdown-item" style="color:red" href="{% url 'shop:product_list' %}">Все продукты</a>
+                <a class="dropdown-item" style="color:#1499be" href="{% url 'shop:product_list' %}">Все продукты</a>
             </li>
             {% for c in categories %}
                 <li {% if category.slug == slug %} class="active"{% endif %}>
-                    <a class="dropdown-item" href="{{ c.get_absolute_url }}" style="color: red">{{ c.name }}</a>
+                    <a class="dropdown-item" href="{{ c.get_absolute_url }}" style="color:#1499be">{{ c.name }}</a>
                 </li>
             {% endfor %}
         </ol>
@@ -154,8 +199,8 @@
         <a class="nav-link dropdown-toggle" href="#" id="avbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Мой аккаунт</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <ol class="list-unstyled">
-                <li><a class="nav-link" href="{% url 'profile' %}" style="color: red">Профиль</a></li>
-                <li><a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red">Корзина:
+                <li><a class="nav-link" href="{% url 'profile' %}" style="color:#1499be">Профиль</a></li>
+                <li><a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color:#1499be">Корзина:
                         {% with total_items=cart|length %}
                             {% if cart|length > 0 %}
                                 {{ total_items }} item{{ total_items|pluralize }}, {{ cart.get_total_price }} Руб.
@@ -165,8 +210,8 @@
                         {% endwith %}
                     </a>
                 </li>
-                <li><a href="{% url 'orders:order_create' %}" class="nav-link" style="color:red"> Купить</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:red">Выйти</a></li>
+                <li><a href="{% url 'orders:order_create' %}" class="nav-link" style="color:#1499be"> Купить</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:#1499be">Выйти</a></li>
             </ol>
         </div>
     </li>

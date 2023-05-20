@@ -90,6 +90,7 @@ def recommend(request):
                 'predicted_rating': predicted_rating,
             }
             product_list.append(product_dict)
+        product_list = product_list[:1]
         return render(request, 'shop/recommend.html', {'product_list': product_list})
     else:
         message = "Вы оценили все возможные книги. В данный момент нам больше нечего вам порекомендовать."

@@ -12,18 +12,17 @@
     <div class="col">
       <h5 style="text-align:center;color: grey ">Категории</h5>
       <br>
-      <ul style="list-style: none">
-        <li  {% if not category %}class="selected"{% endif %}>
-         <a href="{% url 'shop:product_list' %}" class="dropdown-item">Все книги</a>
-        </li>  
-        <hr>
-        {% for c in categories %}
-          <li {% if category.slug == slug %} class="active"{% endif %}>
-            <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-          </li>
-          <hr>
-        {% endfor %} 
-      </ul>                  
+      <ul class="my-dropdown-list">
+  <li {% if not category %}class="selected"{% endif %}>
+    <a href="{% url 'shop:product_list' %}" class="my-dropdown-item" title="Все книги">Все книги</a>
+  </li>
+  {% for c in categories %}
+  <li {% if category.slug == slug %} class="active"{% endif %}>
+    <a class="my-dropdown-item" href="{{ c.get_absolute_url }}" title="{{ c.name }}">{{ c.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+
     </div>
     <div class="col-8">
               <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000" style="min-height: 0; min-width: 0">
