@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
 
+
     <style type="text/css">
         .thumbnail p, .thumbnail h4 {
             white-space: nowrap;
@@ -129,56 +130,65 @@
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item"><a class="nav-link" href="{% url 'shop:product_list' %}"><i class="fas fa-home" style="color: white"></i></a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'about:about_detail' %}" style="color: white" >О нас</a></li>
-                <li  class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="avbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white" >Товары</a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <ol class="list-unstyled">
-                      <li {% if not category %} class="active"{% endif %}><a class="dropdown-item" style="color:red" href="{% url 'shop:product_list' %}">Все продукты</a></li>
-                        {% for c in categories %}
-                          <li {% if category.slug == slug %} class="active"{% endif %}><a  class="dropdown-item" href="{{ c.get_absolute_url }}" style="color: red">{{ c.name }}</a></li>
-                        {% endfor %}
-                    </ol>
-                  </div>
+                <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="avbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Товары</a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <ol class="list-unstyled">
+            <li {% if not category %} class="active"{% endif %}>
+                <a class="dropdown-item" style="color:red" href="{% url 'shop:product_list' %}">Все продукты</a>
+            </li>
+            {% for c in categories %}
+                <li {% if category.slug == slug %} class="active"{% endif %}>
+                    <a class="dropdown-item" href="{{ c.get_absolute_url }}" style="color: red">{{ c.name }}</a>
                 </li>
+            {% endfor %}
+        </ol>
+    </div>
+</li>
+
                 <li class="nav-item"><a class="nav-link" href="{% url 'contact:contact_detail' %}" style="color: white" >Контакты</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://darkkingarthas.wordpress.com/" target="_blank" style="color: white" >Блог</a></li>
                 
                 {% if user.is_authenticated %}
-                    <li  class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="avbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white" >Мой аккаунт</a>
-                    <li class="nav-item"><a class="nav-link recommend-btn btn-13" href="{% url 'shop:recommend' %}" target="_self" style="color: white" >Получить рекомендации</a></li>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <ol class="list-unstyled">
-                                <li><a class="nav-link" href="{% url 'profile' %}" style="color:red">Профиль</a></li>
-                                <li> <a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red">Корзина:
-                                    {% with total_items=cart|length %}
-                                        {% if cart|length > 0 %}
-                                            {{ total_items }} item{{ total_items|pluralize }}, {{ cart.get_total_price }} Руб.
-                                        {% else %}
-                                            0 товаров
-                                        {% endif %}
-                                    {% endwith %}</a>
-                                </li>
-                                <li><a href="{% url 'orders:order_create' %}" class="nav-link" style="color:red"> Купить</a></li>
-                                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:red">Выйти</a></li>
-                            </ol>
-                        </div>
-                    </li>
-                {% endif %}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="avbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">Мой аккаунт</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <ol class="list-unstyled">
+                <li><a class="nav-link" href="{% url 'profile' %}" style="color: red">Профиль</a></li>
+                <li><a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red">Корзина:
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
+                                {{ total_items }} item{{ total_items|pluralize }}, {{ cart.get_total_price }} Руб.
+                            {% else %}
+                                0 товаров
+                            {% endif %}
+                        {% endwith %}
+                    </a>
+                </li>
+                <li><a href="{% url 'orders:order_create' %}" class="nav-link" style="color:red"> Купить</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:red">Выйти</a></li>
+            </ol>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link recommend-btn btn-13" href="{% url 'shop:recommend' %}" target="_self" style="color: white">Получить рекомендации</a>
+    </li>
+{% endif %}
 
               </ul>
-            </div>
-                <ul class="navbar-nav ml-auto">
-                  <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Поиск..." aria-label="Search" name='search' value="{{search_term}}" size="50px">
-                    <button class="btn-search my-sm-0" type="submit">Найти</button>
-                  </form>
-                </ul>
+                </div>
+                    <ul class="navbar-nav ml-auto">
+                      <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Поиск..." aria-label="Search" name='search' value="{{search_term}}" size="50px">
+                        <button class="btn-search my-sm-0" type="submit">Найти</button>
+                      </form>
+                    </ul>
     </nav>
 </div>
 </div>
-</div>
 
 
-<div class="container">
+    <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     
 </nav>
@@ -217,20 +227,15 @@
 <script type="text/javascript" src="{%static 'js/bootstrap.min.js'%}"></script>
 <script type="text/javascript">
     var $star_rating = $('.star-rating .fa');
-    var SetRatingStar = function()
-    {
-        return $star_rating.each(function()
-        {
-            if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating')))
-            {
-                return $(this).removeClass('fa-star-o').addClass('fa-star');
-            }
-            else
-            {
-                return $(this).removeClass('fa-star').addClass('fa-star-o');
-            }
-        });
-    };
+    var SetRatingStar = function() {
+  $star_rating.each(function() {
+    if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))) {
+      $(this).removeClass('fa-star-o').addClass('fa-star');
+    } else {
+      $(this).removeClass('fa-star').addClass('fa-star-o');
+    }
+  });
+};
 
     $star_rating.on('click', function()
     {
@@ -241,7 +246,7 @@
     SetRatingStar();
     $(document).ready(function(){
     });
-        
+
 </script>
 
 <script type="text/javascript">
@@ -257,16 +262,17 @@
 </script>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/owl.carousel.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+<!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.7/umd/popper.min.js" integrity="sha512-uaZ0UXmB7NHxAxQawA8Ow2wWjdsedpRu7nJRSoI2mjnwtY8V5YiCWavoIpo1AhWPMLiW5iEeavmA3JJ2+1idUg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Owl Carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- Custom Script -->
+<script src="{% static 'js/custom.js' %}"></script>
+
+
+
 </head>
 </body>
 </html>
